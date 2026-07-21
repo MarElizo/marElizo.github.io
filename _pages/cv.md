@@ -5,6 +5,12 @@ permalink: /cv/
 author_profile: true
 redirect_from:
   - /resume
+show_research_projects: false
+show_research_stays: false
+show_teaching: false
+show_education: false
+show_citations: false
+show_h_index: false
 ---
 
 {% assign all_pubs     = site.data.publications %}
@@ -314,8 +320,14 @@ redirect_from:
 
 <div class="cv-page">
 
+{% assign cv_metric_cols = 4 %}
+{% if page.show_h_index %}{% assign cv_metric_cols = cv_metric_cols | plus: 1 %}{% endif %}
+{% assign pub_summary_cols = 2 %}
+{% if page.show_citations %}{% assign pub_summary_cols = pub_summary_cols | plus: 1 %}{% endif %}
+{% if page.show_h_index %}{% assign pub_summary_cols = pub_summary_cols | plus: 1 %}{% endif %}
+
 <!-- ── Metrics ──────────────────────────────────────────────── -->
-<div class="metrics-bar">
+<div class="metrics-bar" style="grid-template-columns: repeat({{ cv_metric_cols }}, 1fr);">
   <div class="metric-item">
     <span class="metric-number">{{ all_pubs | size }}</span>
     <span class="metric-label">Publications</span>
@@ -328,10 +340,12 @@ redirect_from:
     <span class="metric-number">{{ all_projects | size }}</span>
     <span class="metric-label">R&D Projects</span>
   </div>
+  {% if page.show_h_index %}
   <div class="metric-item">
     <span class="metric-number">{{ metrics.h_index }}</span>
     <span class="metric-label">H-index</span>
   </div>
+  {% endif %}
   <div class="metric-item">
     <span class="metric-number">{{ awards_own | size }}</span>
     <span class="metric-label">Awards</span>
@@ -350,6 +364,7 @@ redirect_from:
   <p class="cv-summary"> Regarding awards, Juan has received {{ awards_own | size }} distinctions, including the Best Signal Processing Thesis from the Spanish Chapter of IEEE in Communications and Signal Processing. He got also an accésit in the Luis Felipe Torrente divulgation award in medicine (2025). Finally, his students have also received {{awards_supervised | size}} awards. </p>
 </div>
 
+{% if page.show_education %}
 <!-- ── Education ────────────────────────────────────────────── -->
 <div class="cv-section">
   <div class="cv-section-header">
@@ -469,6 +484,7 @@ redirect_from:
 
   </div>
 </div>
+{% endif %}
 
 <!-- ── Publications ──────────────────────────────────────────── -->
 <div class="cv-section">
@@ -477,7 +493,7 @@ redirect_from:
     <div class="cv-section-line"></div>
   </div>
 
-  <div class="pub-summary-grid">
+  <div class="pub-summary-grid" style="grid-template-columns: repeat({{ pub_summary_cols }}, 1fr);">
     <div class="pub-summary-cell">
       <span class="pub-summary-number">{{ journals | size }}</span>
       <span class="pub-summary-label">Journal Papers</span>
@@ -486,14 +502,18 @@ redirect_from:
       <span class="pub-summary-number">{{ q1_pubs | size }}</span>
       <span class="pub-summary-label">Q1 Journals</span>
     </div>
+    {% if page.show_citations %}
     <div class="pub-summary-cell">
       <span class="pub-summary-number">{{ metrics.citations }}</span>
       <span class="pub-summary-label">Citations</span>
     </div>
+    {% endif %}
+    {% if page.show_h_index %}
     <div class="pub-summary-cell">
       <span class="pub-summary-number">{{ metrics.h_index }}</span>
       <span class="pub-summary-label">H-index</span>
     </div>
+    {% endif %}
   </div>
 
   <a class="cv-cta" href="../publications">
@@ -502,6 +522,7 @@ redirect_from:
   </a>
 </div>
 
+{% if page.show_research_projects %}
 <!-- ── Research Projects ─────────────────────────────────────── -->
 <div class="cv-section">
   <div class="cv-section-header">
@@ -536,7 +557,9 @@ redirect_from:
     Browse full project list →
   </a>
 </div>
+{% endif %}
 
+{% if page.show_research_stays %}
 <!-- ── Research Stays ────────────────────────────────────────── -->
 <div class="cv-section">
   <div class="cv-section-header">
@@ -569,7 +592,9 @@ redirect_from:
 
   </div>
 </div>
+{% endif %}
 
+{% if page.show_teaching %}
 <!-- ── Teaching ──────────────────────────────────────────────── -->
 <div class="cv-section">
   <div class="cv-section-header">
@@ -603,6 +628,7 @@ redirect_from:
     Browse full teaching record →
   </a>
 </div>
+{% endif %}
 
 <!-- ── Awards ────────────────────────────────────────────────── -->
 <div class="cv-section">

@@ -3,6 +3,7 @@ layout: archive
 title: "Projects"
 permalink: /projects/
 author_profile: true
+show_role: false
 ---
 
 {% assign all_projects = site.data.projects %}
@@ -275,12 +276,14 @@ author_profile: true
     <button class="filter-pill" data-filter="funding" data-value="private">Private</button>
   </div>
 
+  {% if page.show_role %}
   <div class="control-row">
     <span class="control-label">Role</span>
     <button class="filter-pill active" data-filter="role" data-value="all">All</button>
     <button class="filter-pill" data-filter="role" data-value="PI">PI</button>
     <button class="filter-pill" data-filter="role" data-value="researcher">Researcher</button>
   </div>
+  {% endif %}
 
   <div class="control-row">
     <span class="control-label">Status</span>
@@ -337,12 +340,14 @@ author_profile: true
           <span class="badge badge-private">Private</span>
         {% endif %}
 
-        {% if proj.role == "PI" %}
-          <span class="badge badge-pi">PI</span>
-        {% elsif proj.role == "co-PI" %}
-          <span class="badge badge-co-pi">Co-PI</span>
-        {% else %}
-          <span class="badge badge-researcher">Researcher</span>
+        {% if page.show_role %}
+          {% if proj.role == "PI" %}
+            <span class="badge badge-pi">PI</span>
+          {% elsif proj.role == "co-PI" %}
+            <span class="badge badge-co-pi">Co-PI</span>
+          {% else %}
+            <span class="badge badge-researcher">Researcher</span>
+          {% endif %}
         {% endif %}
 
         {% if proj.active %}
@@ -394,12 +399,14 @@ author_profile: true
           <span class="badge badge-private">Private</span>
         {% endif %}
 
-        {% if proj.role == "PI" %}
-          <span class="badge badge-pi">PI</span>
-        {% elsif proj.role == "co-PI" %}
-          <span class="badge badge-co-pi">Co-PI</span>
-        {% else %}
-          <span class="badge badge-researcher">Researcher</span>
+        {% if page.show_role %}
+          {% if proj.role == "PI" %}
+            <span class="badge badge-pi">PI</span>
+          {% elsif proj.role == "co-PI" %}
+            <span class="badge badge-co-pi">Co-PI</span>
+          {% else %}
+            <span class="badge badge-researcher">Researcher</span>
+          {% endif %}
         {% endif %}
 
         {% for a in proj.area %}
