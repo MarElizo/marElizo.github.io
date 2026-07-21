@@ -233,7 +233,10 @@ show_role: false
 
 <div class="proj-page">
 
-<div class="metrics-bar">
+{% assign proj_metric_cols = 4 %}
+{% if page.show_role %}{% assign proj_metric_cols = proj_metric_cols | plus: 1 %}{% endif %}
+
+<div class="metrics-bar" style="grid-template-columns: repeat({{ proj_metric_cols }}, 1fr);">
   <div class="metric-item">
     <span class="metric-number">{{ all_projects | size }}</span>
     <span class="metric-label">Total</span>
@@ -242,10 +245,12 @@ show_role: false
     <span class="metric-number">{{ eu_projects | size }}</span>
     <span class="metric-label">European</span>
   </div>
+  {% if page.show_role %}
   <div class="metric-item">
     <span class="metric-number">{{ pi_projects | size }}</span>
     <span class="metric-label">PI</span>
   </div>
+  {% endif %}
   <div class="metric-item">
     <span class="metric-number">{{ active_proj | size }}</span>
     <span class="metric-label">Active</span>

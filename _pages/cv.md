@@ -8,7 +8,7 @@ redirect_from:
 show_research_projects: false
 show_research_stays: false
 show_teaching: false
-show_education: false
+show_education: true
 show_citations: false
 show_h_index: false
 ---
