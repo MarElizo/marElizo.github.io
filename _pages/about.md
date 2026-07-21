@@ -366,6 +366,7 @@ redirect_from:
     <span class="metric-number">{{ all_projects | size }}</span>
     <span class="metric-label">R&D Projects</span>
   </div>
+  <!-- HIDDEN: uncomment to show
   <div class="metric-item">
     <span class="metric-number">{{ metrics.citations }}</span>
     <span class="metric-label">Citations</span>
@@ -374,6 +375,7 @@ redirect_from:
     <span class="metric-number">{{ metrics.h_index }}</span>
     <span class="metric-label">H-Index</span>
   </div>
+  -->
 </div>
 
 <div class="about-section">
@@ -394,6 +396,7 @@ redirect_from:
   </div>
 </div>
 
+<!-- HIDDEN: uncomment to show 
 <div class="about-section">
   <div class="about-section-header">
     <span class="about-section-title">Collaborate / Join</span>
@@ -417,8 +420,7 @@ redirect_from:
       <a class="audience-link" href="../projects">Research projects →</a>
     </div>
   </div>
-</div>
-
+</div>-->
 <div class="about-section">
   <div class="about-section-header">
     <span class="about-section-title">Latest Publications</span>
@@ -451,7 +453,7 @@ redirect_from:
 
 {% assign media_items = site.data.media | default: empty %}
 {% assign media_count = media_items | size %}
-
+{% comment %}
 {% if media_count > 0 %}
 <div class="about-section">
   <div class="about-section-header">
@@ -483,6 +485,7 @@ redirect_from:
   </div>
 </div>
 {% endif %}
+{% endcomment %}
 
 <div class="about-section">
   <div class="about-section-header">
